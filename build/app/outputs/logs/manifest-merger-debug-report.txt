@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 application
-INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml:2:5-32:19
+INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml:2:5-32:19
 MERGED from [androidx.window:window:1.0.0-beta04] /Users/abdullahmac/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
 MERGED from [androidx.window:window:1.0.0-beta04] /Users/abdullahmac/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
 MERGED from [androidx.core:core:1.6.0] /Users/abdullahmac/.gradle/caches/transforms-3/7e9df2ac2213a6bd3cef0f2f27870d79/transformed/core-1.6.0/AndroidManifest.xml:24:5-89
@@ -10,14 +10,14 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/abdu
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.6.0] /Users/abdullahmac/.gradle/caches/transforms-3/7e9df2ac2213a6bd3cef0f2f27870d79/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
 	android:name
-		INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml
 manifest
-ADDED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml:1:1-33:12
-INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml:1:1-33:12
-INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml:1:1-33:12
-INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml:1:1-33:12
-MERGED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml:1:1-33:12
-MERGED from [:path_provider_android] /Users/abdullahmac/Downloads/login_flutter-main 2/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+ADDED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml:1:1-33:12
+INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml:1:1-33:12
+INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml:1:1-33:12
+INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml:1:1-33:12
+MERGED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml:1:1-33:12
+MERGED from [:path_provider_android] /Users/abdullahmac/Downloads/App/image_mart_app/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/abdullahmac/.gradle/caches/transforms-3/ae81e06d24c799147c26814497a2a305/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:17:1-23:12
 MERGED from [androidx.window:window:1.0.0-beta04] /Users/abdullahmac/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.fragment:fragment:1.1.0] /Users/abdullahmac/.gradle/caches/transforms-3/75f94412898c7559d34d7edbbeaeb394/transformed/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
@@ -35,29 +35,29 @@ MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/abdullahmac/.gradle/c
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/abdullahmac/.gradle/caches/transforms-3/47ecd4e588b99ef3b772f04d5aa6c9b7/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/abdullahmac/.gradle/caches/transforms-3/03b9b3b952540ee8cedf6c096276d934/transformed/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/abdullahmac/.gradle/caches/transforms-3/6c0c163cc77ae6c91f9f7dfcd179c29c/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
-INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/debug/AndroidManifest.xml:1:1-7:12
-INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/debug/AndroidManifest.xml:1:1-7:12
-INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 	package
-		INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml:1:1-33:12
-		INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml:1:1-33:12
+		INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/debug/AndroidManifest.xml
 	android:versionName
-		INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml:1:1-33:12
-		INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml:1:1-33:12
+		INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/debug/AndroidManifest.xml
 	android:versionCode
-		INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml:1:1-33:12
-		INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml:1:1-33:12
+		INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/debug/AndroidManifest.xml
 	xmlns:android
-		ADDED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml:1:11-69
+		ADDED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml:1:11-69
 uses-sdk
-INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml
-INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml
-MERGED from [:path_provider_android] /Users/abdullahmac/Downloads/login_flutter-main 2/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:path_provider_android] /Users/abdullahmac/Downloads/login_flutter-main 2/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml
+MERGED from [:path_provider_android] /Users/abdullahmac/Downloads/App/image_mart_app/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:path_provider_android] /Users/abdullahmac/Downloads/App/image_mart_app/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/abdullahmac/.gradle/caches/transforms-3/ae81e06d24c799147c26814497a2a305/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/abdullahmac/.gradle/caches/transforms-3/ae81e06d24c799147c26814497a2a305/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.window:window:1.0.0-beta04] /Users/abdullahmac/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
@@ -92,18 +92,18 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/abdullahmac/.g
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/abdullahmac/.gradle/caches/transforms-3/03b9b3b952540ee8cedf6c096276d934/transformed/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/abdullahmac/.gradle/caches/transforms-3/6c0c163cc77ae6c91f9f7dfcd179c29c/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/abdullahmac/.gradle/caches/transforms-3/6c0c163cc77ae6c91f9f7dfcd179c29c/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
-INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/debug/AndroidManifest.xml
-INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/debug/AndroidManifest.xml
+INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/debug/AndroidManifest.xml
+INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/debug/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/debug/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/debug/AndroidManifest.xml
 uses-permission#android.permission.INTERNET
-ADDED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/debug/AndroidManifest.xml:6:5-66
+ADDED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/debug/AndroidManifest.xml:6:5-66
 	android:name
-		ADDED from /Users/abdullahmac/Downloads/login_flutter-main 2/android/app/src/debug/AndroidManifest.xml:6:22-64
+		ADDED from /Users/abdullahmac/Downloads/App/image_mart_app/android/app/src/debug/AndroidManifest.xml:6:22-64
 uses-library#androidx.window.extensions
 ADDED from [androidx.window:window:1.0.0-beta04] /Users/abdullahmac/.gradle/caches/transforms-3/25cee5f028ac2a6b79fd6278ff5b59e2/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
 	android:required
