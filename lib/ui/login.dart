@@ -38,8 +38,8 @@ class _LoginState extends State<Login> {
               Color(0xFF5DE0E6), // Light Teal
               Color(0xFF004AAD), // Dark Blue
             ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
             stops: [0.0, 1.0],
           ),
         ),
@@ -144,13 +144,13 @@ class _LoginState extends State<Login> {
                         children: [
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              minimumSize: const Size.fromHeight(50),
+                              minimumSize: const Size.fromHeight(50), backgroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ).copyWith(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.white),
+                              overlayColor: MaterialStateProperty.all(
+                                  Colors.blue), // Overlay color
                             ),
                             onPressed: () {
                               if (_formKey.currentState?.validate() ?? false) {
@@ -190,7 +190,12 @@ class _LoginState extends State<Login> {
                                     ),
                                   );
                                 },
-                                child: const Text("Signup", style: TextStyle(color: Color.fromARGB(255, 140, 230, 235)),),
+                                child: const Text(
+                                  "Signup",
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 140, 230, 235),
+                                  ),
+                                ),
                               ),
                             ],
                           ),

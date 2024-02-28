@@ -1,16 +1,16 @@
 {
     "logs": [
         {
-            "outputFile": "com.login.login_flutter.app-mergeDebugResources-9:/values-uk/values-uk.xml",
+            "outputFile": "com.login.login_flutter.app-mergeDebugResources-20:/values-uk/values-uk.xml",
             "map": [
                 {
-                    "source": "/Users/abdullahmac/.gradle/caches/transforms-3/7e9df2ac2213a6bd3cef0f2f27870d79/transformed/core-1.6.0/res/values-uk/values-uk.xml",
+                    "source": "/Users/abdullahmac/.gradle/caches/transforms-3/c4988ff80110f75080a936fc6f044848/transformed/core-1.10.1/res/values-uk/values-uk.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,155,257,358,459,564,669,782",
+                        "endColumns": "99,101,100,100,104,104,112,100",
+                        "endOffsets": "150,252,353,454,559,664,777,878"
                     }
                 }
             ]
