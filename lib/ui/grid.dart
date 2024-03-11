@@ -13,26 +13,49 @@ class ImageGridPage extends StatelessWidget {
       ),
       body: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Set the number of columns in the grid
-          crossAxisSpacing: 8.0, // Set the spacing between columns
-          mainAxisSpacing: 8.0, // Set the spacing between rows
+          crossAxisCount: 2,
+          crossAxisSpacing: 8.0,
+          mainAxisSpacing: 8.0,
         ),
         itemCount: results.length,
         itemBuilder: (BuildContext context, int index) {
-          // Extract image details from the results
           final Map<String, dynamic> imageDetails = results[index];
           final String imageUrl = imageDetails['url'];
+          final String label = imageDetails['label'];
 
           return GestureDetector(
             onTap: () {
-              // Handle image tap (if needed)
+              // Navigate to a detailed view or implement further actions on image tap
             },
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-                image: DecorationImage(
-                  image: NetworkImage(imageUrl),
-                  fit: BoxFit.cover,
+            child: Hero(
+              tag: imageUrl, // Unique tag for each image to enable Hero animation
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Image.network(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          label,
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

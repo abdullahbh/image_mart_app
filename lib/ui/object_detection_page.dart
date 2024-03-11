@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
-import 'grid.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
+import 'grid.dart';
 
 class ObjectDetectionPage extends StatefulWidget {
   final String username;
@@ -21,6 +22,7 @@ class ObjectDetectionPage extends StatefulWidget {
 
 class _ObjectDetectionPageState extends State<ObjectDetectionPage> {
   List<Map<String, dynamic>> yoloData = [];
+  final String baseUrl = 'http://172.16.52.228:8000';
 
   @override
   void initState() {
@@ -66,7 +68,7 @@ class _ObjectDetectionPageState extends State<ObjectDetectionPage> {
   }
 
   Future<void> _sendDataToAPI(String username, File imageFile) async {
-    final apiUrl = 'http://172.17.23.62:8000/uploadImage/$username';
+    final apiUrl = '$baseUrl/uploadImage/$username';
     print('Sending data: $username');
 
     try {
@@ -102,7 +104,7 @@ class _ObjectDetectionPageState extends State<ObjectDetectionPage> {
   }
 
   Future<void> _sendSearchRequest(Map<String, dynamic> box) async {
-    final apiUrl = 'http://172.17.23.62:8000/search/';
+    final apiUrl = '$baseUrl/search/';
     print('Sending search request for label: ${box['label']}');
 
     try {
@@ -125,12 +127,7 @@ class _ObjectDetectionPageState extends State<ObjectDetectionPage> {
         print('Search request sent successfully');
         final Map<String, dynamic> jsonResponse = json.decode(response.body);
 
-        // Access the 'results' key from the response
         final List<dynamic> results = jsonResponse['results'];
-
-        // Print or handle the results as needed
-        // print('Search results: $results');
-        // Navigate to the ImageGridPage and pass the results
 
         print('send to ImageGridPage');
         Navigator.push(
