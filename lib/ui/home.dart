@@ -1,14 +1,12 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:login_flutter/ui/image_veiwer.dart';
+import 'object_detection_page.dart';
 
 import 'login.dart';
-import 'object_detection_page.dart'; // Import the object detection page
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -28,6 +26,7 @@ class _HomeState extends State<Home> {
     if (pickedFile != null) {
       setState(() {
         _capturedImagePath = pickedFile.path;
+        _navigateToImageViewer();
       });
     }
   }
@@ -38,8 +37,31 @@ class _HomeState extends State<Home> {
     if (pickedFile != null) {
       setState(() {
         _capturedImagePath = pickedFile.path;
+        _navigateToObjectDetection();
       });
     }
+  }
+
+  void _navigateToObjectDetection() {
+    String username = _boxLogin.get("userName") ?? "";
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ObjectDetectionPage(
+          username: username,
+          imageFile: File(_capturedImagePath!),
+        ),
+      ),
+    );
+  }
+
+  void _navigateToImageViewer() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ImageViewerScreen(imagePath: _capturedImagePath!),
+      ),
+    );
   }
 
   @override
@@ -98,7 +120,6 @@ class _HomeState extends State<Home> {
               ),
             ),
             const SizedBox(height: 20),
-
             ElevatedButton(
               onPressed: _pickImageFromGallery,
               child: Text("Pick Image from Gallery"),
@@ -108,7 +129,6 @@ class _HomeState extends State<Home> {
               onPressed: _captureImage,
               child: Text("Capture Image"),
             ),
-
             const SizedBox(height: 20),
             if (_capturedImagePath != null)
               GestureDetector(
@@ -123,24 +143,15 @@ class _HomeState extends State<Home> {
                   fit: BoxFit.cover,
                 ),
               ),
-
             ElevatedButton(
               onPressed: () {
-                if (_capturedImagePath != null) {
-                  String username = _boxLogin.get("userName") ?? "";
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ObjectDetectionPage(
-                        username: username,
-                        imageFile: File(_capturedImagePath!),
-                      ),
-                    ),
-                  );
-                } else {
-                  // Handle case when no image is selected
+                // Handle case when no image is selected
+                if (_capturedImagePath == null) {
                   // You can show a snackbar or dialog to inform the user.
+                  return;
                 }
+
+                _navigateToObjectDetection();
               },
               child: Text("Search"),
             ),
