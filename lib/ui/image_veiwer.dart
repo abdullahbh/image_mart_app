@@ -11,27 +11,26 @@ class ImageViewerScreen extends StatelessWidget {
   Future<void> _cropImage() async {
     ImageCropper imageCropper =
         ImageCropper(); // Create an instance of ImageCropper
-    File? croppedImage = await imageCropper.cropImage(
+    CroppedFile? croppedImage = await imageCropper.cropImage(
       sourcePath: File(imagePath).path,
-      maxWidth: 512,
-      maxHeight: 512,
       aspectRatioPresets: [
         CropAspectRatioPreset.square,
         CropAspectRatioPreset.ratio3x2,
         CropAspectRatioPreset.original,
         CropAspectRatioPreset.ratio4x3,
-        CropAspectRatioPreset.ratio16x9,
+        CropAspectRatioPreset.ratio16x9
       ],
-      androidUiSettings: AndroidUiSettings(
-        toolbarTitle: 'Crop Image',
-        toolbarColor: Colors.deepOrange,
-        toolbarWidgetColor: Colors.white,
-        initAspectRatio: CropAspectRatioPreset.original,
-        lockAspectRatio: false,
-      ),
-      iosUiSettings: IOSUiSettings(
-        title: 'Crop Image',
-      ),
+      uiSettings: [
+        AndroidUiSettings(
+            toolbarTitle: 'Cropper',
+            toolbarColor: Colors.deepOrange,
+            toolbarWidgetColor: Colors.white,
+            initAspectRatio: CropAspectRatioPreset.original,
+            lockAspectRatio: false),
+        IOSUiSettings(
+          title: 'Cropper',
+        ),
+      ],
     );
 
     if (croppedImage != null) {
