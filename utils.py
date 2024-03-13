@@ -9,11 +9,11 @@ from transformers import AutoImageProcessor, Dinov2Model
 from ultralytics import YOLO
 import io
 
-yolo_weights = "C:/Users/Aeiman Imtiaz/OneDrive/Desktop/University Work/API/yolo_weights.pt"
+yolo_weights = "yolo_weights.pt"
 ## Reading files
 
-index = faiss.read_index('C:/Users/Aeiman Imtiaz/OneDrive/Desktop/University Work/API/dinoIndex_gd.bin')
-df = pd.read_csv('C:/Users/Aeiman Imtiaz/OneDrive/Desktop/University Work/API/urls.csv')
+index = faiss.read_index('dinoIndex_gd.bin')
+df = pd.read_csv('urls.csv')
 
 ## Loading models
 processor_dino = AutoImageProcessor.from_pretrained("facebook/dinov2-base")
