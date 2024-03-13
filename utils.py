@@ -94,7 +94,21 @@ def search(image,coordinates,k):
     return df
     
 
-  
+def search_cropped(image,k):
+    """
+    Perform a search based on a cropped region of an image.
+
+    Parameters:
+    - image_path (str): Path to the original image.
+    - coordinates (tuple): Bounding box coordinates (x1, y1, x2, y2).
+
+    Returns:
+    - pd.DataFrame: DataFrame containing search results.
+    
+    """
+    image_features = dinoFeatureExtractor(image)
+    df = query(image_features,k)
+    return df
 
 # Variable to store information based on user choice
 chosen_object_info = None
