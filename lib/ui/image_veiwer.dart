@@ -7,12 +7,12 @@ import 'grid.dart';
 
 class ImageViewerScreen extends StatelessWidget {
   final String imagePath;
-  final baseUrl = 'http://172.17.23.30:8000';
+  final baseUrl = 'http://172.17.23.39:8000';
 
   const ImageViewerScreen({Key? key, required this.imagePath})
       : super(key: key);
 
-  Future<void> _cropImage() async {
+  Future<void> _cropImage(BuildContext context) async {
     ImageCropper imageCropper =
         ImageCropper(); // Create an instance of ImageCropper
     CroppedFile? croppedImage = await imageCropper.cropImage(
@@ -39,12 +39,12 @@ class ImageViewerScreen extends StatelessWidget {
 
     if (croppedImage != null) {
       // Send the cropped image to the FastAPI endpoint
-      await _sendDataToAPI(croppedImage.path);
+      await _sendDataToAPI(context, croppedImage.path);
       print('Cropped image path: ${croppedImage.path}');
     }
   }
 
-  Future<void> _sendDataToAPI(String imagePath) async {
+  Future<void> _sendDataToAPI(BuildContext context, String imagePath) async {
     final apiUrl = '$baseUrl/searchCropped/';
 
     try {
@@ -113,7 +113,7 @@ class ImageViewerScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: _cropImage,
+                  onPressed: () => _cropImage(context),
                   child: Row(
                     children: [
                       Icon(Icons.crop),
@@ -123,7 +123,7 @@ class ImageViewerScreen extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () => _sendDataToAPI(imagePath),
+                  onPressed: () => _sendDataToAPI(context, imagePath),
                   child: Row(
                     children: [
                       Icon(Icons.search),
