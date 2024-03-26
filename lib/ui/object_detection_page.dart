@@ -22,7 +22,7 @@ class ObjectDetectionPage extends StatefulWidget {
 
 class _ObjectDetectionPageState extends State<ObjectDetectionPage> {
   List<Map<String, dynamic>> yoloData = [];
-  final String baseUrl = 'http://172.17.23.39:8000';
+  final String baseUrl = 'http://172.17.23.13:8000';
 
   @override
   void initState() {
@@ -36,32 +36,34 @@ class _ObjectDetectionPageState extends State<ObjectDetectionPage> {
       appBar: AppBar(
         title: Text("Object Detection"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Object Detection Page",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Object Detection Page",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            ImageWithBoundingBoxes(
-              imageFile: widget.imageFile,
-            ),
-            if (yoloData.isNotEmpty)
-              Column(
-                children: yoloData.map((box) {
-                  return ElevatedButton(
-                    onPressed: () {
-                      _sendSearchRequest(box);
-                    },
-                    child: Text(box['label'].toString()),
-                  );
-                }).toList(),
+              ImageWithBoundingBoxes(
+                imageFile: widget.imageFile,
               ),
-          ],
+              if (yoloData.isNotEmpty)
+                Column(
+                  children: yoloData.map((box) {
+                    return ElevatedButton(
+                      onPressed: () {
+                        _sendSearchRequest(box);
+                      },
+                      child: Text(box['label'].toString()),
+                    );
+                  }).toList(),
+                ),
+            ],
+          ),
         ),
       ),
     );

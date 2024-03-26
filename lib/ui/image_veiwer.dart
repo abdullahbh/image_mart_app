@@ -7,7 +7,7 @@ import 'grid.dart';
 
 class ImageViewerScreen extends StatelessWidget {
   final String imagePath;
-  final baseUrl = 'http://172.17.23.39:8000';
+  final baseUrl = 'http://172.17.23.13:8000';
 
   const ImageViewerScreen({Key? key, required this.imagePath})
       : super(key: key);
@@ -94,48 +94,44 @@ class ImageViewerScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Image Viewer"),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
-              child: Image.file(
-                File(imagePath),
-                fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.file(
+              File(imagePath),
+            ),
+            SizedBox(height: 16.0),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () => _cropImage(context),
+                    child: Row(
+                      children: [
+                        Icon(Icons.crop),
+                        SizedBox(width: 8.0),
+                        Text("Crop Image"),
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => _sendDataToAPI(context, imagePath),
+                    child: Row(
+                      children: [
+                        Icon(Icons.search),
+                        SizedBox(width: 8.0),
+                        Text("Search Image"),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-          SizedBox(height: 16.0),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () => _cropImage(context),
-                  child: Row(
-                    children: [
-                      Icon(Icons.crop),
-                      SizedBox(width: 8.0),
-                      Text("Crop Image"),
-                    ],
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () => _sendDataToAPI(context, imagePath),
-                  child: Row(
-                    children: [
-                      Icon(Icons.search),
-                      SizedBox(width: 8.0),
-                      Text("Search Image"),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
