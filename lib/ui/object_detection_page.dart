@@ -22,7 +22,7 @@ class ObjectDetectionPage extends StatefulWidget {
 
 class _ObjectDetectionPageState extends State<ObjectDetectionPage> {
   List<Map<String, dynamic>> yoloData = [];
-  final String baseUrl = 'http://172.17.23.13:8000';
+  final String baseUrl = 'http://172.27.64.1:8000';
 
   @override
   void initState() {

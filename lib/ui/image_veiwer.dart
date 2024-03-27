@@ -7,7 +7,7 @@ import 'grid.dart';
 
 class ImageViewerScreen extends StatelessWidget {
   final String imagePath;
-  final baseUrl = 'http://172.17.23.13:8000';
+  final baseUrl = 'http://172.27.64.1:8000';
 
   const ImageViewerScreen({Key? key, required this.imagePath})
       : super(key: key);
