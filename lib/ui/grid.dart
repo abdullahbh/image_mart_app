@@ -70,7 +70,7 @@ class ImageGridPage extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             final Map<String, dynamic> imageDetails = results[index];
             final String imageUrl = imageDetails['url'];
-            final String label = imageDetails['label'];
+            final String label = imageDetails['Product_Name'];
 
             return GestureDetector(
               onTap: () {
