@@ -29,8 +29,8 @@ async def send_data(item: Item):
     return {}
 
 
-@app.post("/uploadImage/{username}")
-async def upload_image(username: str, image: UploadFile = File(...)):
+@app.post("/uploadImage/")
+async def upload_image(image: UploadFile = File(...)):
     # print(f"Received image for username: {username}")
     global content  # Use the global variable
 
@@ -81,9 +81,9 @@ async def search_endpoint2(image: UploadFile = File(...)):
         image_content = await image.read()
         image_pil = Image.open(io.BytesIO(image_content))
     # Display the received image using matplotlib
-        plt.imshow(image_pil)
-        plt.axis("off")
-        plt.show()
+        # plt.imshow(image_pil)
+        # plt.axis("off")
+        # plt.show()
         
         df = search_cropped(image_pil, 6)
         df_json = df.to_json(orient='records')
