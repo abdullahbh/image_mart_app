@@ -9,7 +9,7 @@ from transformers import AutoImageProcessor, Dinov2Model
 from ultralytics import YOLO
 import io
 
-yolo_weights = "yolo_weights.pt"
+yolo_weights = "weights_best.pt"
 ## Reading files
 
 index = faiss.read_index('dinoIndex_gd.bin')
@@ -64,7 +64,8 @@ def query(image_features,k):
         'image name': df['image name'].iloc[indices[0]],
         'label' : df['label'].iloc[indices[0]],
         'distance': distances[0],
-        'url':df['Image_Url'].iloc[indices[0]]
+        'url':df['Image_Url'].iloc[indices[0]],
+        'Product_Name':df['Product_Name'].iloc[indices[0]]
     })
 
     dino_df['product_id'] = dino_df['image name'].str.split('_', n=1).str[0]
@@ -130,9 +131,9 @@ def choose_and_crop(image):
     for result in results:
         im_array = result.plot()
         im_rgb = im_array[..., ::-1]
-        # plt.figure(figsize=(12, 8))
-        # plt.imshow(im_rgb)
-        # plt.show()
+        plt.figure(figsize=(12, 8))
+        plt.imshow(im_rgb)
+        plt.show()
 
     bounding_boxes = [
         {"Index": i,
