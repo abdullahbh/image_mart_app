@@ -22,12 +22,12 @@ class ObjectDetectionPage extends StatefulWidget {
 
 class _ObjectDetectionPageState extends State<ObjectDetectionPage> {
   List<Map<String, dynamic>> yoloData = [];
-  final String baseUrl = 'http://172.27.64.1:8000';
+  final String baseUrl = 'http://172.17.23.100:8000';
 
   @override
   void initState() {
     super.initState();
-    _sendDataToAPI(widget.username, widget.imageFile);
+    _sendDataToYOLO(widget.username, widget.imageFile);
   }
 
   @override
@@ -69,7 +69,7 @@ class _ObjectDetectionPageState extends State<ObjectDetectionPage> {
     );
   }
 
-  Future<void> _sendDataToAPI(String username, File imageFile) async {
+  Future<void> _sendDataToYOLO(String username, File imageFile) async {
     final apiUrl = '$baseUrl/uploadImage/$username';
     print('Sending data: $username');
 
@@ -93,6 +93,7 @@ class _ObjectDetectionPageState extends State<ObjectDetectionPage> {
         final Map<String, dynamic> data =
             json.decode(utf8.decode(streamedResponse.bodyBytes));
         final yoloOutputData = data['yolo output'];
+        print('Yolo output data: $yoloOutputData');
 
         setState(() {
           yoloData = List<Map<String, dynamic>>.from(yoloOutputData);
