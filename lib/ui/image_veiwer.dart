@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:http/http.dart' as http;
-import 'grid.dart'; // Ensure this import points to your actual grid view file.
+import 'grid.dart';
+import 'dart:ui' as ui;
 
 class ImageViewerScreen extends StatefulWidget {
   final String imagePath;
@@ -18,13 +19,26 @@ class ImageViewerScreen extends StatefulWidget {
 }
 
 class _ImageViewerScreenState extends State<ImageViewerScreen> {
-  static const String baseUrl = 'http://172.17.23.100:8000';
   List<Map<String, dynamic>> yoloData = [];
+  final String baseUrl = 'http://192.168.10.13:8000';
+
+  ui.Image? image; // Image object to hold the loaded image
 
   @override
   void initState() {
     super.initState();
+    _loadImage(File(widget.imagePath)); // Load the image on init
     _sendDataToYOLO(File(widget.imagePath));
+  }
+
+  // New method to load the image and get its dimensions
+  Future<void> _loadImage(File imageFile) async {
+    final data = await imageFile.readAsBytes();
+    final codec = await ui.instantiateImageCodec(data);
+    final frame = await codec.getNextFrame();
+    setState(() {
+      image = frame.image;
+    });
   }
 
   @override
@@ -42,15 +56,37 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
                 "Object Detection Page",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              Image.file(File(widget.imagePath)),
+              if (image != null) // Ensure the image object is loaded
+                FittedBox(
+                  child: SizedBox(
+                    width: image!.width.toDouble(),
+                    height: image!.height.toDouble(),
+                    child: Stack(
+                      children: [
+                        Image.file(File(widget.imagePath)),
+                        CustomPaint(
+                          size: Size(image!.width.toDouble(),
+                              image!.height.toDouble()),
+                          painter: BoundingBoxPainter(yoloData, image!),
+                        ),
+                        ..._createDotButtons(),
+                      ],
+                    ),
+                  ),
+                ),
+              // Button widgets moved outside of FittedBox and into their own Column
               if (yoloData.isNotEmpty)
-                Column(
-                  children: yoloData.map((box) {
-                    return ElevatedButton(
-                      onPressed: () => _sendSearchRequest(box),
-                      child: Text(box['label'].toString()),
-                    );
-                  }).toList(),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Wrap(
+                    direction: Axis.horizontal,
+                    children: yoloData.map((box) {
+                      return ElevatedButton(
+                        onPressed: () => _sendSearchRequest(box),
+                        child: Text(box['label'].toString()),
+                      );
+                    }).toList(),
+                  ),
                 ),
               ElevatedButton(
                 onPressed: _cropImage,
@@ -63,9 +99,40 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
     );
   }
 
+  List<Widget> _createDotButtons() {
+    List<Widget> dotButtons = [];
+    if (image == null) return dotButtons;
+
+    double scaleX = MediaQuery.of(context).size.width / image!.width;
+    double scaleY = MediaQuery.of(context).size.width /
+        image!.height; // Maintain aspect ratio
+
+    for (var data in yoloData) {
+      final coordinates = data['coordinates'];
+      final double centerX = (coordinates[0] + coordinates[2]) / 2 * scaleX;
+      final double centerY = (coordinates[1] + coordinates[3]) / 2 * scaleY;
+
+      dotButtons.add(
+        Positioned(
+          left: centerX - 25, // Adjust these values as needed for accuracy
+          top: centerY - 25,
+          child: GestureDetector(
+            onTap: () => _sendSearchRequest(data),
+            child: Container(
+              width: 250, // Size of the touch area
+              height: 250,
+              color: Colors.transparent,
+            ),
+          ),
+        ),
+      );
+    }
+
+    return dotButtons;
+  }
+
   Future<void> _sendDataToYOLO(File imageFile) async {
     final String apiUrl = '$baseUrl/uploadImage/';
-    print('Sending data');
 
     try {
       var request = http.MultipartRequest('POST', Uri.parse(apiUrl))
@@ -92,7 +159,7 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
 
   Future<void> _sendSearchRequest(Map<String, dynamic> box) async {
     final String apiUrl = '$baseUrl/search/';
-    print('Sending search request for label: ${box['label']}');
+    print("Sending search request for box: $box"); // Debug print
 
     try {
       final response = await http.post(
@@ -143,14 +210,14 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
     );
 
     if (croppedImage != null) {
-      // Send the cropped image to the FastAPI endpoint
       await _sendDataToAPI(context, croppedImage.path);
       print('Cropped image path: ${croppedImage.path}');
     }
   }
 
   Future<void> _sendDataToAPI(BuildContext context, String imagePath) async {
-    final apiUrl = '$baseUrl/searchCropped/';
+    final String baseUrl = 'http://192.168.100.10:8000';
+    final String apiUrl = '$baseUrl/searchCropped/';
 
     try {
       var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
@@ -171,9 +238,6 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
             json.decode(utf8.decode(streamedResponse.bodyBytes));
         final List<dynamic> results = jsonResponse['results'];
 
-        print('Results: $results');
-
-        // Navigate to ImageGridPage and pass the results
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -186,5 +250,49 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
     } catch (error) {
       print('Error sending data: $error');
     }
+  }
+}
+
+class BoundingBoxPainter extends CustomPainter {
+  final List<Map<String, dynamic>> yoloData;
+  final ui.Image image;
+
+  BoundingBoxPainter(this.yoloData, this.image);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final double scaleX = size.width / image.width;
+    final double scaleY = size.height / image.height;
+    final paintBox = Paint()
+      ..color = Colors.red
+      ..strokeWidth = 2.0
+      ..style = PaintingStyle.stroke;
+
+    final paintDot = Paint()
+      ..color = const Color.fromARGB(255, 255, 255, 255)
+      ..style = PaintingStyle.fill;
+
+    for (var data in yoloData) {
+      final List<dynamic> coordinates = data['coordinates'];
+      final Rect rect = Rect.fromLTRB(
+        coordinates[0].toDouble() * scaleX,
+        coordinates[1].toDouble() * scaleY,
+        coordinates[2].toDouble() * scaleX,
+        coordinates[3].toDouble() * scaleY,
+      );
+      canvas.drawRect(rect, paintBox);
+
+      // Draw dot at the center of the bounding box
+      final Offset center = Offset(
+        (rect.left + rect.right) / 2,
+        (rect.top + rect.bottom) / 2,
+      );
+      canvas.drawCircle(center, 13.0, paintDot); // Radius of 5.0 for the dot
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 }
