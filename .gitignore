@@ -1,4 +1,3 @@
-*.pt
 *.bin
 
 # Ignore the build directory
