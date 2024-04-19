@@ -1,1 +1,1 @@
-uvicorn detection_api:app --host 172.17.23.40 --port 8000 --reload
+uvicorn detection_api:app --host 192.168.21.105 --port 8000 --reload

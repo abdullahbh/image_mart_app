@@ -69,7 +69,6 @@ async def search_endpoint(data: Dict[str, List[int]]):
 
         df_json = df.to_json(orient='records')
         df_response = json.loads(df_json)
-        print(df_response)
         return {"results": df_response}
     except Exception as e:
         # Handle any errors that may occur
@@ -82,14 +81,13 @@ async def search_endpoint2(image: UploadFile = File(...)):
         image_content = await image.read()
         image_pil = Image.open(io.BytesIO(image_content))
     # Display the received image using matplotlib
-        plt.imshow(image_pil)
-        plt.axis("off")
-        plt.show()
+        # plt.imshow(image_pil)
+        # plt.axis("off")
+        # plt.show()
         
         df = search_cropped(image_pil, 6)
         df_json = df.to_json(orient='records')
         df_response = json.loads(df_json)
-        print(df_response)
         return {"results": df_response}
     except Exception as e:
         # Handle any errors that may occur

@@ -9,10 +9,15 @@ from transformers import AutoImageProcessor, Dinov2Model
 from ultralytics import YOLO
 import io
 
-yolo_weights = "weights_best.pt"
+<<<<<<< Updated upstream
+yolo_weights = "yolo_weights_v2.pt"
 ## Reading files
 
+index = faiss.read_index('embeddings.bin')
+=======
+yolo_weights = "yolo_weights.pt"
 index = faiss.read_index('dinoIndex_gd.bin')
+>>>>>>> Stashed changes
 df = pd.read_csv('urls.csv')
 
 ## Loading models
@@ -49,7 +54,6 @@ def query(image_features,k):
     Parameters:
     - image_features (torch.Tensor): Image features to query.
     - k (int): Number of similar images to retrieve.
-    - organized_images_path (str): Path to the Catalog images directory.
 
     Returns:
     - pd.DataFrame: DataFrame containing query results.
@@ -65,13 +69,25 @@ def query(image_features,k):
         'label' : df['label'].iloc[indices[0]],
         'distance': distances[0],
         'url':df['Image_Url'].iloc[indices[0]],
-        'Product_Name':df['Product_Name'].iloc[indices[0]]
+        'Product_Name':df['Product_Name'].iloc[indices[0]],
+        'Product_Id': df['product_id'].iloc[indices[0]]
     })
+    
+    # Create a dictionary to store URLs for each product_id
+    product_urls = {}
 
-    dino_df['product_id'] = dino_df['image name'].str.split('_', n=1).str[0]
-    dino_df = dino_df.drop_duplicates(subset=['product_id'])
-    dino_df = dino_df.drop(columns=['product_id'])
+    # Iterate over each unique product_id in dino_df
+    for product_id in dino_df['Product_Id'].unique():
+        # Find all URLs associated with the current product_id
+        urls = df.loc[df['product_id'] == product_id, 'Image_Url'].tolist()
+        # Store the URLs in the dictionary against the product_id
+        product_urls[product_id] = urls
+
+    # Create a new column to store the list of URLs for each product_id
+    dino_df['URLs'] = dino_df['Product_Id'].map(product_urls)
+
     dino_df = dino_df[:k]
+    # dino_df.to_csv('search_results.csv',index=False)
     return dino_df
     
 ## Searching
@@ -131,9 +147,9 @@ def choose_and_crop(image):
     for result in results:
         im_array = result.plot()
         im_rgb = im_array[..., ::-1]
-        plt.figure(figsize=(12, 8))
-        plt.imshow(im_rgb)
-        plt.show()
+        # plt.figure(figsize=(12, 8))
+        # plt.imshow(im_rgb)
+        # plt.show()
 
     bounding_boxes = [
         {"Index": i,
