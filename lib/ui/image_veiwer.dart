@@ -216,7 +216,6 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
   }
 
   Future<void> _sendDataToAPI(BuildContext context, String imagePath) async {
-    final String baseUrl = 'http://192.168.100.10:8000';
     final String apiUrl = '$baseUrl/searchCropped/';
 
     try {

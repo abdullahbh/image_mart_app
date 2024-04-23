@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ImageSlider.dart';
 
 // DetailedImageView widget
 class DetailedImageView extends StatelessWidget {
@@ -71,12 +72,22 @@ class ImageGridPage extends StatelessWidget {
             final Map<String, dynamic> imageDetails = results[index];
             final String imageUrl = imageDetails['url'];
             final String label = imageDetails['Product_Name'];
+            final String productDescription = imageDetails['Product_Description'];
 
             return GestureDetector(
               onTap: () {
+                // Extract image URLs from the DataFrame entry
+                List<String> imageUrls =
+                    List<String>.from(imageDetails['URLs']);
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      DetailedImageView(imageUrl: imageUrl, label: label),
+                  builder: (context) => ImageSlider(
+                      imageUrls: imageUrls,
+                      productName:
+                          label, // Use `productName` instead of `label`
+                      productDescription:
+                         productDescription, // Add a description or fetch it similar to label
+                      productPrice: 29.99 // Set a default or fetch price
+                      ),
                 ));
               },
               child: Hero(
