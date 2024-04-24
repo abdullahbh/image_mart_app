@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'ImageSlider.dart';
 
@@ -86,7 +88,7 @@ class ImageGridPage extends StatelessWidget {
                           label, // Use `productName` instead of `label`
                       productDescription:
                          productDescription, // Add a description or fetch it similar to label
-                      productPrice: 29.99 // Set a default or fetch price
+                      productPrice: (Random().nextInt(9) + 1) * 1000,
                       ),
                 ));
               },

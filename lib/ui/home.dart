@@ -1,10 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+// import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:login_flutter/ui/image_veiwer.dart';
-import 'object_detection_page.dart';
 import 'login.dart';
 
 class Home extends StatefulWidget {
@@ -15,7 +14,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final Box _boxLogin = Hive.box("login");
+  // final Box _boxLogin = Hive.box("login");
   String? _capturedImagePath;
 
   Future<void> _pickImageFromGallery() async {
@@ -42,7 +41,8 @@ class _HomeState extends State<Home> {
   void _navigateToImageViewer() {
     // Implement navigation to image viewer page with the image path.
     Navigator.of(context).push(MaterialPageRoute(
-        builder: (_) => ImageViewerScreen(imagePath: _capturedImagePath ?? "" )));
+        builder: (_) =>
+            ImageViewerScreen(imagePath: _capturedImagePath ?? "")));
   }
 
   void _showImageSourceActionSheet() {
@@ -112,7 +112,15 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             IconButton(icon: Icon(Icons.home), onPressed: () {}),
-            IconButton(icon: Icon(Icons.account_circle), onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (_) => Login()));}),
+            IconButton(
+              icon: const Icon(Icons.account_circle),
+              onPressed: () {
+                print(
+                    "Navigating to login page"); // Debug statement to confirm the method is triggered
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => const Login()));
+              },
+            ),
           ],
         ),
       ),

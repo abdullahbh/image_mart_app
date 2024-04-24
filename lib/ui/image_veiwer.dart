@@ -20,7 +20,7 @@ class ImageViewerScreen extends StatefulWidget {
 
 class _ImageViewerScreenState extends State<ImageViewerScreen> {
   List<Map<String, dynamic>> yoloData = [];
-  final String baseUrl = 'http://192.168.100.10:8000';
+  final String baseUrl = 'http://172.16.52.193:8000';
 
   ui.Image? image; // Image object to hold the loaded image
 
