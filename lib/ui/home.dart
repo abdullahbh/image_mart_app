@@ -50,25 +50,31 @@ class _HomeState extends State<Home> {
       context: context,
       builder: (BuildContext context) {
         return SafeArea(
-          child: Wrap(
-            children: <Widget>[
-              ListTile(
-                leading: Icon(Icons.camera_alt),
-                title: Text('Capture Image'),
-                onTap: () {
-                  Navigator.pop(context);
-                  _captureImage();
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.photo_library),
-                title: Text('Pick from Gallery'),
-                onTap: () {
-                  Navigator.pop(context);
-                  _pickImageFromGallery();
-                },
-              ),
-            ],
+          child: Container(
+            color: Colors
+                .black, // Set the background color for the entire container
+            child: Wrap(
+              children: <Widget>[
+                ListTile(
+                  leading: Icon(Icons.camera_alt, color: Colors.white),
+                  title: Text('Capture Image',
+                      style: TextStyle(color: Colors.white)),
+                  onTap: () {
+                    Navigator.pop(context);
+                    _captureImage();
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.photo_library, color: Colors.white),
+                  title: Text('Pick from Gallery',
+                      style: TextStyle(color: Colors.white)),
+                  onTap: () {
+                    Navigator.pop(context);
+                    _pickImageFromGallery();
+                  },
+                ),
+              ],
+            ),
           ),
         );
       },
@@ -92,33 +98,48 @@ class _HomeState extends State<Home> {
       body: GridView.count(
         crossAxisCount: 2,
         children: <Widget>[
-          _categoryIcon(Icons.star, 'Popular'),
-          _categoryIcon(Icons.event_seat, 'Chairs'),
-          _categoryIcon(Icons.table_bar, 'Tables'),
-          _categoryIcon(Icons.weekend, 'Sofas'),
-          _categoryIcon(Icons.bed, 'Beds'),
+          _categoryIcon(Icons.event_seat, 'Chairs', 'assets/chair.jpeg'),
+          _categoryIcon(Icons.bed, 'Cabinets', 'assets/cabinet.jpeg'),
+          _categoryIcon(Icons.table_bar, 'Tables', 'assets/table.jpeg'),
+          _categoryIcon(Icons.weekend, 'Sofas', 'assets/sofa.jpeg'),
+          _categoryIcon(Icons.bed, 'Beds', 'assets/bed.jpeg'),
+          _categoryIcon(Icons.bed, 'Lamp', 'assets/lamp.jpeg'),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _showImageSourceActionSheet,
-        tooltip: 'Scan',
-        child: Icon(Icons.camera_enhance),
+      floatingActionButton: Container(
+        height: 80.0, // Adjust the size by setting height
+        width: 80.0, // Adjust the size by setting width
+        child: FloatingActionButton(
+          onPressed: _showImageSourceActionSheet,
+          tooltip: 'Scan',
+          backgroundColor: Colors.black,
+          child: Icon(
+            Icons.camera_enhance,
+            color: Colors.white,
+            size: 40.0, // Increase the icon size
+          ),
+          elevation: 10.0, // Adds shadow to make the button stand out
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(40.0) // More rounded shape
+              ),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         notchMargin: 4.0,
+        color: Color(0xFF6ACBEA), // Setting the color of the BottomAppBar
         child: Row(
+          // Adding the icons to the BottomAppBar
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            IconButton(icon: Icon(Icons.home), onPressed: () {}),
             IconButton(
-              icon: const Icon(Icons.account_circle),
+                icon: Icon(Icons.home, color: Colors.white), onPressed: () {}),
+            IconButton(
+              icon: Icon(Icons.account_circle, color: Colors.white),
               onPressed: () {
-                print(
-                    "Navigating to login page"); // Debug statement to confirm the method is triggered
-                Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (context) => const Login()));
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => const Login()));
               },
             ),
           ],
@@ -127,11 +148,15 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget _categoryIcon(IconData icon, String label) {
+  Widget _categoryIcon(IconData icon, String label, String imagePath) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Icon(icon, size: 50),
+        Image.asset(
+          imagePath,
+          width: 170,
+          height: 170,
+        ),
         Text(label),
       ],
     );

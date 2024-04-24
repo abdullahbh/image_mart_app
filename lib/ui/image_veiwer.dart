@@ -20,7 +20,7 @@ class ImageViewerScreen extends StatefulWidget {
 
 class _ImageViewerScreenState extends State<ImageViewerScreen> {
   List<Map<String, dynamic>> yoloData = [];
-  final String baseUrl = 'http://172.16.52.193:8000';
+  final String baseUrl = 'http://35.200.137.138:8000';
 
   ui.Image? image; // Image object to hold the loaded image
 
@@ -52,10 +52,6 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                "Object Detection Page",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
               if (image != null) // Ensure the image object is loaded
                 FittedBox(
                   child: SizedBox(
@@ -74,14 +70,22 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
                     ),
                   ),
                 ),
-              // Button widgets moved outside of FittedBox and into their own Column
+              // Enhancing button styles and adding space between them
               if (yoloData.isNotEmpty)
-                Align(
-                  alignment: Alignment.bottomCenter,
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: Wrap(
-                    direction: Axis.horizontal,
+                    spacing: 10.0, // space between buttons
+                    runSpacing: 10.0, // space between rows
+                    alignment: WrapAlignment.center,
                     children: yoloData.map((box) {
                       return ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              Colors.black, // background (button) color
+                          foregroundColor:
+                              Colors.white, // foreground (text) color
+                        ),
                         onPressed: () => _sendSearchRequest(box),
                         child: Text(box['label'].toString()),
                       );
@@ -89,6 +93,10 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
                   ),
                 ),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF6ACBEA),
+                  foregroundColor: Colors.white, // button text color
+                ),
                 onPressed: _cropImage,
                 child: const Text("Crop Image"),
               ),
@@ -211,7 +219,6 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
 
     if (croppedImage != null) {
       await _sendDataToAPI(context, croppedImage.path);
-      print('Cropped image path: ${croppedImage.path}');
     }
   }
 

@@ -30,3 +30,9 @@ flutter:
 
   assets:
     - assets/logo.png
+    - assets/bed.jpeg
+    - assets/chair.jpeg
+    - assets/table.jpeg
+    - assets/sofa.jpeg
+    - assets/cabinet.jpeg
+    - assets/lamp.jpeg

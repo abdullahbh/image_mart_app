@@ -59,7 +59,7 @@ class ImageGridPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Image Grid"),
+        title: Text("Results"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

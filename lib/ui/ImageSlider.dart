@@ -58,8 +58,8 @@ class _ImageSliderState extends State<ImageSlider> {
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
         title: Text(
-          widget.productName,
-          style: TextStyle(color: Colors.black),
+          ("Product Details"),
+          style: TextStyle(color: const Color.fromRGBO(0, 0, 0, 1)),
         ),
         centerTitle: true,
       ),
@@ -90,7 +90,8 @@ class _ImageSliderState extends State<ImageSlider> {
                       duration: Duration(milliseconds: 300),
                       curve: Curves.linear,
                     ),
-                    child: Icon(Icons.arrow_back_ios, size: 30, color: Colors.black54),
+                    child: Icon(Icons.arrow_back_ios,
+                        size: 30, color: Colors.black54),
                   ),
                 ),
                 Positioned(
@@ -100,7 +101,8 @@ class _ImageSliderState extends State<ImageSlider> {
                       duration: Duration(milliseconds: 300),
                       curve: Curves.linear,
                     ),
-                    child: Icon(Icons.arrow_forward_ios, size: 30, color: Colors.black54),
+                    child: Icon(Icons.arrow_forward_ios,
+                        size: 30, color: Colors.black54),
                   ),
                 ),
               ],
@@ -139,15 +141,18 @@ class _ImageSliderState extends State<ImageSlider> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Add to cart functionality
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black, // Button color
-                      foregroundColor: Colors.white, // Text color
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Add to cart functionality
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            Color.fromARGB(255, 59, 173, 215), // Button color
+                        foregroundColor: Colors.white, // Text color
+                      ),
+                      child: Text('Add to Cart'),
                     ),
-                    child: Text('Add to Cart'),
                   ),
                 ],
               ),
